@@ -35,6 +35,6 @@ void OscillatorData::setWaveFrequency(int midiNoteNumber){
 void OscillatorData::setFmParameters(float depth, float frequency){
     fmOscillator.setFrequency(frequency);
     fmDepth = depth;
-    setFrequency(juce::MidiMessage::getMidiNoteInHertz(lastMidiNotePlayed) + fmModulation);
+    setFrequency(std::fabs(juce::MidiMessage::getMidiNoteInHertz(lastMidiNotePlayed) + fmModulation));
 }
 

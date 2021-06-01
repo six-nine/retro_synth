@@ -29,7 +29,7 @@ void RetroSynthAudioProcessorEditor::paint (juce::Graphics& g) {
 
 void RetroSynthAudioProcessorEditor::resized() {
     adsr.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
-    oscillator.setBounds(10, 10, 100, 30);
+    oscillator.setBounds(10, 10, 200, 200);
 }
 
 
