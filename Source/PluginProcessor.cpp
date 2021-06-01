@@ -152,9 +152,13 @@ void RetroSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
             auto& sustain = *apvts.getRawParameterValue("SUSTAIN");
             auto& release = *apvts.getRawParameterValue("RELEASE");
             
+            auto& fmDepth = *apvts.getRawParameterValue("FM_DEPTH");
+            auto& fmFrequency = *apvts.getRawParameterValue("FM_FREQUENCY");
+            
             auto& oscillatorWave = *apvts.getRawParameterValue("OSCILLATORWAVETYPE");
             
             voice->update(attack.load(), decay.load(), sustain.load(), release.load());
+            voice->getOscillator().setFmParameters(fmDepth.load(), fmFrequency.load());
             voice->getOscillator().setWaveType(oscillatorWave.load());
         }
     }
@@ -196,13 +200,11 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout RetroSynthAudioProcessor::createParams() {
-    // Combobox for oscillators
-    // Attack
-    // Decay
-    // Sustain
-    // Release
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
     params.push_back(std::make_unique<juce::AudioParameterChoice>("OSCILLATOR", "Oscillator", juce::StringArray{"Sin", "Saw", "Square"}, 0));
+    
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FM_FREQUENCY", "FM Frequency", juce::NormalisableRange<float>{0.0f, 1000.0f}, 5.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FM_DEPTH", "FM Depth", juce::NormalisableRange<float>{0.0f, 1000.0f}, 100.0f));
     
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack", juce::NormalisableRange<float>{0.1f, 1.0f}, 0.1f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay", juce::NormalisableRange<float>{0.1f, 1.0f}, 0.1f));

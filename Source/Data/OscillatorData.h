@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    OscillatorData.h
-    Created: 30 May 2021 12:25:54pm
-    Author:  Вадим Козлов
-
-  ==============================================================================
-*/
-
 #pragma once
 #include <JuceHeader.h>
 
@@ -17,6 +7,10 @@ public:
     void prepareToPlay(juce::dsp::ProcessSpec &processSpec);
     void setWaveFrequency(int midiNoteNumber);
     void processNextBlock(juce::dsp::AudioBlock<float>& audioBlock);
+    void setFmParameters(float depth, float frequency);
 private:
-    
+    juce::dsp::Oscillator<float> fmOscillator{ [](float x){ return std::sin(x); } };
+    float fmModulation = 0.0f;
+    float fmDepth = 0.0f;
+    int lastMidiNotePlayed = 0;
 };
