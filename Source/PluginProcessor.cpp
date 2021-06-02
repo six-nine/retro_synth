@@ -1,11 +1,3 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -31,13 +23,11 @@ RetroSynthAudioProcessor::~RetroSynthAudioProcessor()
 }
 
 //==============================================================================
-const juce::String RetroSynthAudioProcessor::getName() const
-{
+const juce::String RetroSynthAudioProcessor::getName() const {
     return JucePlugin_Name;
 }
 
-bool RetroSynthAudioProcessor::acceptsMidi() const
-{
+bool RetroSynthAudioProcessor::acceptsMidi() const {
    #if JucePlugin_WantsMidiInput
     return true;
    #else
@@ -45,8 +35,7 @@ bool RetroSynthAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool RetroSynthAudioProcessor::producesMidi() const
-{
+bool RetroSynthAudioProcessor::producesMidi() const {
    #if JucePlugin_ProducesMidiOutput
     return true;
    #else
@@ -54,8 +43,7 @@ bool RetroSynthAudioProcessor::producesMidi() const
    #endif
 }
 
-bool RetroSynthAudioProcessor::isMidiEffect() const
-{
+bool RetroSynthAudioProcessor::isMidiEffect() const {
    #if JucePlugin_IsMidiEffect
     return true;
    #else
@@ -63,33 +51,27 @@ bool RetroSynthAudioProcessor::isMidiEffect() const
    #endif
 }
 
-double RetroSynthAudioProcessor::getTailLengthSeconds() const
-{
+double RetroSynthAudioProcessor::getTailLengthSeconds() const {
     return 0.0;
 }
 
-int RetroSynthAudioProcessor::getNumPrograms()
-{
+int RetroSynthAudioProcessor::getNumPrograms() {
     return 1;   // NB: some hosts don't cope very well if you tell them there are 0 programs,
                 // so this should be at least 1, even if you're not really implementing programs.
 }
 
-int RetroSynthAudioProcessor::getCurrentProgram()
-{
+int RetroSynthAudioProcessor::getCurrentProgram() {
     return 0;
 }
 
-void RetroSynthAudioProcessor::setCurrentProgram (int index)
-{
+void RetroSynthAudioProcessor::setCurrentProgram (int index) {
 }
 
-const juce::String RetroSynthAudioProcessor::getProgramName (int index)
-{
+const juce::String RetroSynthAudioProcessor::getProgramName (int index) {
     return {};
 }
 
-void RetroSynthAudioProcessor::changeProgramName (int index, const juce::String& newName)
-{
+void RetroSynthAudioProcessor::changeProgramName (int index, const juce::String& newName) {
 }
 
 //==============================================================================
@@ -102,15 +84,13 @@ void RetroSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     }
 }
 
-void RetroSynthAudioProcessor::releaseResources()
-{
+void RetroSynthAudioProcessor::releaseResources() {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool RetroSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
-{
+bool RetroSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const {
   #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
     return true;
@@ -134,8 +114,7 @@ bool RetroSynthAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
-void RetroSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
-{
+void RetroSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
@@ -167,26 +146,22 @@ void RetroSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
 }
 
 //==============================================================================
-bool RetroSynthAudioProcessor::hasEditor() const
-{
+bool RetroSynthAudioProcessor::hasEditor() const {
     return true; // (change this to false if you choose to not supply an editor)
 }
 
-juce::AudioProcessorEditor* RetroSynthAudioProcessor::createEditor()
-{
+juce::AudioProcessorEditor* RetroSynthAudioProcessor::createEditor() {
     return new RetroSynthAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void RetroSynthAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
-{
+void RetroSynthAudioProcessor::getStateInformation (juce::MemoryBlock& destData) {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void RetroSynthAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
+void RetroSynthAudioProcessor::setStateInformation (const void* data, int sizeInBytes) {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
@@ -194,8 +169,7 @@ void RetroSynthAudioProcessor::setStateInformation (const void* data, int sizeIn
 
 //==============================================================================
 // This creates new instances of the plugin..
-juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
-{
+juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter() {
     return new RetroSynthAudioProcessor();
 }
 

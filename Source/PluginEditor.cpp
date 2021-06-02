@@ -1,11 +1,3 @@
-/*
-  ==============================================================================
-
-    This file contains the basic framework code for a JUCE plugin editor.
-
-  ==============================================================================
-*/
-
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
@@ -30,8 +22,7 @@ RetroSynthAudioProcessorEditor::RetroSynthAudioProcessorEditor (RetroSynthAudioP
     addAndMakeVisible(oscillator);
 }
 
-RetroSynthAudioProcessorEditor::~RetroSynthAudioProcessorEditor()
-{
+RetroSynthAudioProcessorEditor::~RetroSynthAudioProcessorEditor() {
 }
 
 //==============================================================================

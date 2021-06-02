@@ -1,7 +1,7 @@
 #pragma once
 #include <JuceHeader.h>
 
-class OscillatorData : public juce::dsp::Oscillator<float>{
+class OscillatorData : public juce::dsp::Oscillator<float> {
 public:
     void setWaveType(const int waveId);
     void prepareToPlay(juce::dsp::ProcessSpec &processSpec);

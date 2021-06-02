@@ -13,10 +13,8 @@
 #include "SyntSound.h"
 
 //==============================================================================
-/**
-*/
-class RetroSynthAudioProcessor  : public juce::AudioProcessor
-{
+
+class RetroSynthAudioProcessor  : public juce::AudioProcessor {
 public:
     //==============================================================================
     RetroSynthAudioProcessor();

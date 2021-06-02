@@ -35,7 +35,7 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     prepared = true;
 }
 
-void SynthVoice::update(const float attack, const float decay, const float sustain, const float release){
+void SynthVoice::update(const float attack, const float decay, const float sustain, const float release) {
     adsr.updateADSR(attack, decay, sustain, release);
 }
 

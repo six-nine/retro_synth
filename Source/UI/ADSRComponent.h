@@ -1,13 +1,3 @@
-/*
-  ==============================================================================
-
-    ADSRComponent.h
-    Created: 29 May 2021 10:46:21pm
-    Author:  Вадим Козлов
-
-  ==============================================================================
-*/
-
 #pragma once
 
 #include <JuceHeader.h>
@@ -15,8 +5,7 @@
 //==============================================================================
 /*
 */
-class ADSRComponent  : public juce::Component
-{
+class ADSRComponent  : public juce::Component {
 public:
     ADSRComponent(juce::AudioProcessorValueTreeState &apvts);
     ~ADSRComponent() override;

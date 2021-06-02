@@ -5,8 +5,7 @@
 //==============================================================================
 /*
 */
-class OscillatorComponent  : public juce::Component
-{
+class OscillatorComponent  : public juce::Component {
 public:
     OscillatorComponent(juce::AudioProcessorValueTreeState &apvts);
     ~OscillatorComponent() override;

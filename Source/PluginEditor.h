@@ -16,8 +16,7 @@
 //==============================================================================
 /**
 */
-class RetroSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
-{
+class RetroSynthAudioProcessorEditor  : public juce::AudioProcessorEditor {
 public:
     RetroSynthAudioProcessorEditor (RetroSynthAudioProcessor&);
     ~RetroSynthAudioProcessorEditor() override;

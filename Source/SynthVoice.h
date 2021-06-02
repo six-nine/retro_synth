@@ -6,7 +6,7 @@
 #include "Data/ADSRData.h"
 #include "Data/OscillatorData.h"
 
-class SynthVoice : public juce::SynthesiserVoice{
+class SynthVoice : public juce::SynthesiserVoice {
 public:
     bool canPlaySound(juce::SynthesiserSound *) override;
     void startNote(int midiNoteNumber, float velocity, juce::SynthesiserSound *sound, int currentPitchWheelPosition) override;
