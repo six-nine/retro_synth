@@ -18,15 +18,23 @@ OscillatorComponent::~OscillatorComponent()
 }
 
 void OscillatorComponent::paint (juce::Graphics& g) {
-    g.fillAll(juce::Colours::yellow);
+    g.fillAll(juce::Colour(41, 41, 41));
 }
 
 void OscillatorComponent::resized() {
-    oscillatorWaveSelector.setBounds(0, 0, 90, 20);
-    fmFrequencySlider.setBounds(0, 80, 100, 100);
+    int marginTop = 60;
+    int padding = 10;
+    auto bounds = getLocalBounds();
+    int sliderWidth = (bounds.getWidth() - 2 * padding) / 2;
+    oscillatorWaveSelector.setBounds(padding, padding, 80, 20);
+    
+    fmFrequencySlider.setBounds(padding, marginTop, sliderWidth, sliderWidth);
     fmFrequencyLabel.setBounds(fmFrequencySlider.getX(), fmFrequencySlider.getY() - 20, fmFrequencySlider.getWidth(), 20);
     
-    fmDepthSlider.setBounds(fmFrequencySlider.getX() + fmFrequencySlider.getWidth(), 80, 100, 100);
+    fmDepthSlider.setBounds(fmFrequencySlider.getX() + fmFrequencySlider.getWidth() + padding,
+                            marginTop,
+                            sliderWidth,
+                            sliderWidth);
     fmDepthLabel.setBounds(fmDepthSlider.getX(), fmDepthSlider.getY() - 20, fmDepthSlider.getWidth(), 20);
 }
 
@@ -43,6 +51,6 @@ void OscillatorComponent::setSliderWithLabel(juce::Slider &slider,
     
     label.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
     label.setJustificationType(juce::Justification::centred);
-    label.setFont(15.0f);
+    label.setFont(12.0f);
     addAndMakeVisible(label);
 }

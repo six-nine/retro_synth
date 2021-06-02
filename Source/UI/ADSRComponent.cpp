@@ -23,16 +23,16 @@ ADSRComponent::~ADSRComponent(){
 }
 
 void ADSRComponent::paint (juce::Graphics& g) {
-    g.fillAll(juce::Colours::orange);
+    g.fillAll(juce::Colour(41, 41, 41));
 }
 
 void ADSRComponent::resized() {
-    const auto bounds = getLocalBounds().reduced(10);
     const auto padding = 10;
-    const auto sliderWidth = bounds.getWidth() / 4 - padding;
-    const auto sliderHeight  = bounds.getHeight();
-    const auto sliderStartX = 0;
-    const auto sliderStartY = 0;
+    const auto bounds = getLocalBounds();
+    const auto sliderWidth = (bounds.getWidth() - padding * 5) / 4;
+    const auto sliderHeight  = bounds.getHeight() - 2 * padding;
+    const auto sliderStartX = padding;
+    const auto sliderStartY = padding;
     
     attackSlider.setBounds(sliderStartX, sliderStartY, sliderWidth, sliderHeight);
     decaySlider.setBounds(attackSlider.getRight() + padding, sliderStartY, sliderWidth, sliderHeight);
